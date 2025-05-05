@@ -1,33 +1,46 @@
 package com.meliskarci.contactappwithandroidjetpackcompose.ui.detail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.meliskarci.contactappwithandroidjetpackcompose.data.local.ContactEntity
+import com.meliskarci.contactappwithandroidjetpackcompose.domain.usecase.DeleteContactByIdUseCase
+import com.meliskarci.contactappwithandroidjetpackcompose.domain.usecase.GetContactByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor() : ViewModel() {
+class DetailViewModel @Inject constructor(
+    private val getContactByIdUseCase: GetContactByIdUseCase,
+    private val deleteContactByIdUseCase: DeleteContactByIdUseCase,
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(UiState())
-    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+    private val id = savedStateHandle.get<Int>("id") ?: 0
 
-    private val _uiEffect by lazy { Channel<UiEffect>() }
-    val uiEffect: Flow<UiEffect> by lazy { _uiEffect.receiveAsFlow() }
+    private val _contact = MutableStateFlow<ContactEntity>(ContactEntity(0,"sges","dhdfhf","","",""))
+    val contact : StateFlow<ContactEntity>
+        get() = _contact.asStateFlow()
 
-    fun onAction(uiAction: UiAction) {
+    init {
+        getContactById(id)
     }
 
-    private fun updateUiState(block: UiState.() -> UiState) {
-        _uiState.update(block)
+    fun getContactById(id: Int) {
+        viewModelScope.launch {
+            getContactByIdUseCase.invoke(id).collect {
+                _contact.value = it
+            }
+        }
     }
 
-    private suspend fun emitUiEffect(uiEffect: UiEffect) {
-        _uiEffect.send(uiEffect)
+    fun delete(id: Int) {
+        viewModelScope.launch {
+            deleteContactByIdUseCase(id)
+        }
     }
 }
