@@ -1,5 +1,6 @@
 package com.meliskarci.contactappwithandroidjetpackcompose.ui.detail.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -65,23 +66,35 @@ fun ContactRow(
 
         // Action Icons
         if (isNumber) {
-            Icon(
-                imageVector = Icons.Default.MailOutline,
-                contentDescription = "Message",
-                tint  = Color(0xFF00ADB5),
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Icon(
-                imageVector = Icons.Default.Phone,
-                contentDescription = "Call",
-                tint  = Color(0xFF00ADB5)
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically, // ikonları dikeyde hizalar
+                modifier = Modifier.fillMaxWidth(), // isteğe göre genişlik
+                horizontalArrangement = Arrangement.End // ikonları sağa yaslar
+            ) {
+                Icon(
+                    imageVector = Icons.Default.MailOutline,
+                    contentDescription = "Message",
+                    tint = Color(0xFF00ADB5)
+                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Icon(
+                    imageVector = Icons.Default.Phone,
+                    contentDescription = "Call",
+                    tint = Color(0xFF00ADB5)
+                )
+            }
         } else {
-            Icon(
-                imageVector = Icons.Default.Email,
-                contentDescription = "Email",
-                tint  = Color(0xFF00ADB5)
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Email,
+                    contentDescription = "Email",
+                    tint = Color(0xFF00ADB5)
+                )
+            }
         }
-    }
-}
+
+    }}

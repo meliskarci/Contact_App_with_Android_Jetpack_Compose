@@ -21,15 +21,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyappTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val navController = rememberNavController()
-                    val startDestination = Home
-                    NavigationGraph(
-                        navController = navController,
-                        startDestination = startDestination,
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                NavigationGraph(
+                    startDestination = Home,
+                    modifier = Modifier.fillMaxSize()
+                )
             }
         }
     }

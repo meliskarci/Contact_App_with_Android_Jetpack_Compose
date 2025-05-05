@@ -27,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,6 +36,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.meliskarci.contactappwithandroidjetpackcompose.R
+import com.meliskarci.contactappwithandroidjetpackcompose.navigation.Screen
 import com.meliskarci.contactappwithandroidjetpackcompose.ui.home.components.CustomSearchBar
 import com.meliskarci.contactappwithandroidjetpackcompose.ui.home.components.LazyRowComponent
 
@@ -53,11 +54,11 @@ fun HomeScreen(navController: NavController) {
 
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(color = Color.White)) {
+        .background(color = Color.White).padding(top = 35.dp)) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             item {
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
                     text = "Contacts",
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,

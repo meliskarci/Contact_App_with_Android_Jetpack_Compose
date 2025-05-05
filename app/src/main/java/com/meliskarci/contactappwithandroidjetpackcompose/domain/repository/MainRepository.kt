@@ -1,3 +1,0 @@
-package com.meliskarci.contactappwithandroidjetpackcompose.domain.repository
-
-interface MainRepository

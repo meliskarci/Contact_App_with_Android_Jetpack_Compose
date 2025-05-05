@@ -14,7 +14,7 @@ compose-bom = "2025.01.01"
 room = "2.6.1"
 hilt = "2.53.1"
 hiltNavigationCompose = "1.2.0"
-navigation = "2.8.6"
+navigation = "2.8.9"
 kotlinxSerialization = "1.8.0"
 
 [libraries]

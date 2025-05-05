@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Edit
@@ -21,6 +22,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -46,9 +48,7 @@ import com.meliskarci.contactappwithandroidjetpackcompose.ui.detail.components.C
 
 
 @Composable
-fun DetailScreen(navController: NavController,
-                 id : Int,
-) {
+fun DetailScreen(navController: NavController) {
     val viewModel = hiltViewModel<DetailViewModel>()
     val contact = viewModel.contact.collectAsStateWithLifecycle()
 
@@ -59,15 +59,15 @@ fun DetailScreen(navController: NavController,
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White)
+            .background(color = Color.White).padding(bottom = 16.dp)
     ) {
         //Back Button
         IconButton(
             onClick = { navController.navigateUp() },
             modifier = Modifier
-                .padding(16.dp)
+                .padding(start = 16.dp, top = 40.dp)
                 .size(40.dp)
-                .background(color = Color.Magenta.copy(alpha = 0.2f), CircleShape),
+                .background(color = Color.Gray.copy(alpha = 0.2f), CircleShape),
         ) {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
@@ -82,9 +82,9 @@ fun DetailScreen(navController: NavController,
                 .fillMaxWidth()
                 .height(650.dp)
                 .align(Alignment.BottomCenter),
-            shape = RoundedCornerShape(topStart = 500.dp, topEnd = 30.dp),
+            shape = RoundedCornerShape(50.dp),
             colors = CardDefaults.cardColors(
-                containerColor = Color.LightGray
+                containerColor = Color.LightGray,
             )
         ) {
             Column(
@@ -107,7 +107,7 @@ fun DetailScreen(navController: NavController,
                         color = Color.White
                     )
                 }
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(14.dp))
                 // Name
                 Text(
                     text = contact.value.name,
@@ -129,7 +129,7 @@ fun DetailScreen(navController: NavController,
                         contentDescription = "Edit",
                         tint  = Color(0xFF393E46)
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = "Edit Contact",
                         color = Color(0xFF393E46)
@@ -161,7 +161,7 @@ fun DetailScreen(navController: NavController,
                     Button(
                         onClick = {
                             showDialog = true // Dialog'u göster
-                        }
+                        }, modifier = Modifier.align(Alignment.CenterHorizontally)
                     ) {
                         Text("Kişiyi Sil")
                     }
@@ -177,7 +177,7 @@ fun DetailScreen(navController: NavController,
                 confirmButton = {
                     Button(
                         onClick = {
-                            viewModel.delete(id) // Kişiyi sil
+                            viewModel.delete(contact.value.id) // Kişiyi sil
                             showDialog = false
                             navController.navigateUp() // Ana ekrana geri dön
                         }

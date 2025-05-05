@@ -62,13 +62,14 @@ fun AddContactScreen(navController: NavController){
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Image(painter = painterResource(R.drawable.ic_launcher_background), contentDescription = "")
-            Spacer(Modifier.padding(80.dp))
+            Image(painter = painterResource(R.drawable.image), contentDescription = "")
+            Spacer(Modifier.padding(50.dp))
             TextField(modifier = Modifier.fillMaxWidth(),value = name, onValueChange = { name = it}, label = { Text("Name") })
             Spacer(Modifier.padding(15.dp))
             TextField(modifier = Modifier.fillMaxWidth(),value = surname, onValueChange = {surname=it}, label = { Text("Surname") })
             Spacer(Modifier.padding(15.dp))
             TextField(modifier = Modifier.fillMaxWidth(),value = email, onValueChange = {email=it}, label = { Text("Email") })
+            Spacer(Modifier.padding(15.dp))
             Button(
                 onClick = {
                     val contact = ContactEntity(

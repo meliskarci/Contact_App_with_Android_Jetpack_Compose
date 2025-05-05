@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -106,3 +107,4 @@ fun CustomSearchBar(searchText: MutableState<String>) {
         //Bu alanda arama geçmişi gösterilebilir isteğe bağlıdır.
     }
 }
+
