@@ -1,4 +1,4 @@
-package com.meliskarci.contactappwithandroidjetpackcompose.ui.theme
+package com.meliskarci.workofartapp.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

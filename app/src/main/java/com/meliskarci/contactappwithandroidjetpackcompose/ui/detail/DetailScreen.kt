@@ -38,12 +38,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.meliskarci.contactappwithandroidjetpackcompose.ui.detail.components.ContactRow
 
 
@@ -52,6 +54,7 @@ fun DetailScreen(navController: NavController) {
     val viewModel = hiltViewModel<DetailViewModel>()
     val contact = viewModel.contact.collectAsStateWithLifecycle()
 
+
     var showDialog by remember { mutableStateOf(false) }//SEN EKLEDİN
 
 
@@ -59,7 +62,7 @@ fun DetailScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.White).padding(bottom = 16.dp)
+            .background(MaterialTheme.colorScheme.background).padding(bottom = 16.dp)
     ) {
         //Back Button
         IconButton(
@@ -80,7 +83,7 @@ fun DetailScreen(navController: NavController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(650.dp)
+                .height(500.dp)
                 .align(Alignment.BottomCenter),
             shape = RoundedCornerShape(50.dp),
             colors = CardDefaults.cardColors(
@@ -98,7 +101,7 @@ fun DetailScreen(navController: NavController) {
                     modifier = Modifier
                         .size(100.dp)
                         .clip(CircleShape)
-                        .background(color = Color.LightGray),
+                        .background(MaterialTheme.colorScheme.primary),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -127,12 +130,12 @@ fun DetailScreen(navController: NavController) {
                     Icon(
                         imageVector = Icons.Default.Edit,
                         contentDescription = "Edit",
-                        tint  = Color(0xFF393E46)
+                        tint  = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         text = "Edit Contact",
-                        color = Color(0xFF393E46)
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))

@@ -5,11 +5,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.ihsanarslan.contactapp.ui.home.HomeScreen
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.Screen.Home
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.Screen.Detail
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.Screen.Add
 import com.meliskarci.contactappwithandroidjetpackcompose.ui.add.AddContactScreen
-import com.meliskarci.contactappwithandroidjetpackcompose.ui.home.HomeScreen
 import com.meliskarci.contactappwithandroidjetpackcompose.ui.detail.DetailScreen
 
 

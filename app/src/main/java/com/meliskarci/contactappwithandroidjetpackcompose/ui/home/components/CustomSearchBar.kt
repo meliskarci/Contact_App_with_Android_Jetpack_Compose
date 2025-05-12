@@ -92,17 +92,17 @@ fun CustomSearchBar(searchText: MutableState<String>) {
                 shape = RoundedCornerShape(24.dp),
                 modifier = Modifier.fillMaxWidth()
             )
-        },
+        } ,
         expanded = expanded,
         onExpandedChange = { expanded = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-            .shadow(
-                elevation = 4.dp,
-                shape = RoundedCornerShape(24.dp),
-                spotColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f)
-            )
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(horizontal = 16.dp, vertical = 8.dp)
+//            .shadow(
+//                elevation = 4.dp,
+//                shape = RoundedCornerShape(24.dp),
+//                spotColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f)
+//            )
     ) {
         //Bu alanda arama geçmişi gösterilebilir isteğe bağlıdır.
     }

@@ -1,4 +1,4 @@
-package com.meliskarci.contactappwithandroidjetpackcompose.ui.home
+package com.ihsanarslan.contactapp.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,6 +22,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -35,9 +36,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.meliskarci.contactappwithandroidjetpackcompose.R
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.Screen
+import com.meliskarci.contactappwithandroidjetpackcompose.ui.home.HomeScreenViewModel
 import com.meliskarci.contactappwithandroidjetpackcompose.ui.home.components.CustomSearchBar
 import com.meliskarci.contactappwithandroidjetpackcompose.ui.home.components.LazyRowComponent
 
@@ -52,22 +55,20 @@ fun HomeScreen(navController: NavController) {
 
     var searchText = remember { mutableStateOf("") }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color.White).padding(top = 35.dp)) {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.fillMaxSize().padding(top = 30.dp)) {
             item {
                 Text(
-                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     text = "Contacts",
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+//                Spacer(modifier = Modifier.height(16.dp))
                 CustomSearchBar(searchText = searchText)
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(modifier = Modifier.padding(start = 15.dp), text = "Recent Added", fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
+                Text(modifier = Modifier.padding(start = 15.dp),text = "Recent Added", fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
                 Spacer(modifier = Modifier.height(8.dp))
                 LazyRowComponent(kisiList = recentAdded.value)
                 Spacer(modifier = Modifier.height(24.dp))
@@ -79,6 +80,7 @@ fun HomeScreen(navController: NavController) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
             }
+
             items(allContacts.value.size) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -109,11 +111,11 @@ fun HomeScreen(navController: NavController) {
                             )
                         }
                     }
-                    Spacer(Modifier.width(16.dp))
+                    Spacer(modifier = Modifier.width(16.dp))
                     Column {
                         Text(
                             text = "${allContacts.value[it].name} ${allContacts.value[it].surname}",
-                            fontSize = 18.sp,
+                            fontSize = 16.sp,
                             fontWeight = FontWeight.Medium
                         )
                         Text(
@@ -124,6 +126,7 @@ fun HomeScreen(navController: NavController) {
                     }
                 }
             }
+
         }
         FloatingActionButton(
             modifier = Modifier

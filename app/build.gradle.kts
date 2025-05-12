@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.ui.text.google.fonts)
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.espresso.core)
@@ -86,4 +87,8 @@ dependencies {
 
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization)
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
 }

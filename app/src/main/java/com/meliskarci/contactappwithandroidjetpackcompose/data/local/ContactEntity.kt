@@ -19,4 +19,6 @@ data class ContactEntity(
     val phone : String,
     @ColumnInfo(name = "image")
     val image : String
+
+
 )

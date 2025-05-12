@@ -1,4 +1,4 @@
-package com.meliskarci.contactappwithandroidjetpackcompose.ui.theme
+package com.meliskarci.workofartapp.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

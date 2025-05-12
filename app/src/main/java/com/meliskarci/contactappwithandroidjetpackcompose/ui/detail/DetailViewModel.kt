@@ -23,7 +23,7 @@ class DetailViewModel @Inject constructor(
 
     private val id = savedStateHandle.get<Int>("id") ?: 0
 
-    private val _contact = MutableStateFlow<ContactEntity>(ContactEntity(0,"sges","dhdfhf","","",""))
+    private val _contact = MutableStateFlow<ContactEntity>(ContactEntity(0,"vjjvjj","fhfggj","","",""))
     val contact : StateFlow<ContactEntity>
         get() = _contact.asStateFlow()
 

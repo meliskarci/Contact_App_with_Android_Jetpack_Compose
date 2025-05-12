@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.NavigationGraph
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.Screen.Home
-import com.meliskarci.contactappwithandroidjetpackcompose.ui.theme.MyappTheme
+import com.meliskarci.workofartapp.ui.theme.MyappTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
