@@ -90,7 +90,9 @@ fun HomeScreen(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically,
 
                     modifier = Modifier.fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp).background(color = MaterialTheme.colorScheme.surfaceContainer)
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .clip(shape = MaterialTheme.shapes.medium)
+                        .background(color = MaterialTheme.colorScheme.surfaceContainer)
                         .clickable{ navController.navigate(Screen.Detail(id = allContacts.value[it].id))
                         }
                 ) {

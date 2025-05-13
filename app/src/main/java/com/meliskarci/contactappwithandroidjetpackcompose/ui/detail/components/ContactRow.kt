@@ -13,6 +13,7 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,6 +23,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.compose.tertiaryContainerLight
 
 @Composable
 fun ContactRow(
@@ -50,14 +52,14 @@ fun ContactRow(
             Text(
                 text = title,
                 style = TextStyle(
-                    color = Color.Gray,
+                    color = (MaterialTheme.colorScheme.onPrimaryContainer),
                     fontSize = 14.sp
                 )
             )
             Text(
                 text = data,
                 style = TextStyle(
-                    color = Color.Black,
+                    color = (MaterialTheme.colorScheme.onPrimaryContainer),
                     fontSize = 16.sp
                 )
             )
@@ -74,25 +76,25 @@ fun ContactRow(
                 Icon(
                     imageVector = Icons.Default.MailOutline,
                     contentDescription = "Message",
-                    tint = Color(0xFF00ADB5)
+                    tint = MaterialTheme.colorScheme.inversePrimary
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Icon(
                     imageVector = Icons.Default.Phone,
                     contentDescription = "Call",
-                    tint = Color(0xFF00ADB5)
+                    tint = MaterialTheme.colorScheme.inversePrimary
                 )
             }
         } else {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.End
             ) {
                 Icon(
                     imageVector = Icons.Default.Email,
                     contentDescription = "Email",
-                    tint = Color(0xFF00ADB5)
+                    tint = MaterialTheme.colorScheme.inversePrimary
                 )
             }
         }

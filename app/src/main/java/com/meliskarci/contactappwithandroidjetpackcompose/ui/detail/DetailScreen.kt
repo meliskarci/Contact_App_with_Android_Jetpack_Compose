@@ -62,7 +62,7 @@ fun DetailScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background).padding(bottom = 16.dp)
+            .background(color = MaterialTheme.colorScheme.surface).padding(bottom = 16.dp)
     ) {
         //Back Button
         IconButton(
@@ -92,7 +92,7 @@ fun DetailScreen(navController: NavController) {
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxSize().background(MaterialTheme.colorScheme.surfaceContainer)
                     .padding(top = 60.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -101,13 +101,13 @@ fun DetailScreen(navController: NavController) {
                     modifier = Modifier
                         .size(100.dp)
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primary),
+                        .background(MaterialTheme.colorScheme.primaryContainer),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = "${contact.value.name.first()}${contact.value.surname.first()}",
                         style = MaterialTheme.typography.headlineLarge,
-                        color = Color.White
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
                 }
                 Spacer(modifier = Modifier.height(14.dp))
@@ -116,7 +116,7 @@ fun DetailScreen(navController: NavController) {
                     text = contact.value.name,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -164,9 +164,12 @@ fun DetailScreen(navController: NavController) {
                     Button(
                         onClick = {
                             showDialog = true // Dialog'u göster
-                        }, modifier = Modifier.align(Alignment.CenterHorizontally)
+                        }, modifier = Modifier.align(Alignment.CenterHorizontally),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onSecondaryContainer)
                     ) {
-                        Text("Kişiyi Sil")
+                        Text("Delete")
                     }
                 }
             }
@@ -185,7 +188,7 @@ fun DetailScreen(navController: NavController) {
                             navController.navigateUp() // Ana ekrana geri dön
                         }
                     ) {
-                        Text("Evet")
+                        Text("Yes")
                     }
                 },
                 dismissButton = {
@@ -194,13 +197,13 @@ fun DetailScreen(navController: NavController) {
                             showDialog = false  // Diyalog kapanacak
                         }
                     ) {
-                        Text("Hayır")
+                        Text("No")
                     }
                 },
-                title = { Text("Kişiyi Sil")
+                title = { Text("Delete")
                 },
                 text = {
-                    Text("Bu kişiyi silmek istediğinize emin misiniz?")
+                    Text("Are you sure you want to delete this?")
                 }
             )
     }
