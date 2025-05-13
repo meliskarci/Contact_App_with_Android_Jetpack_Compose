@@ -9,9 +9,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.compose.AppTheme
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.NavigationGraph
 import com.meliskarci.contactappwithandroidjetpackcompose.navigation.Screen.Home
-import com.meliskarci.workofartapp.ui.theme.MyappTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MyappTheme {
+            AppTheme  {
                 NavigationGraph(
                     startDestination = Home,
                     modifier = Modifier.fillMaxSize()

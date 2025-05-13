@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,11 +36,12 @@ fun LazyRowComponent(kisiList: List<ContactEntity>) {
                     modifier = Modifier
                         .size(70.dp)
                         .clip(CircleShape)
-                        .background(color = Color.LightGray),
+                        .background(MaterialTheme.colorScheme.secondaryContainer),
                     contentAlignment = Alignment.Center
                 ) { if (kisiList[it].image.isEmpty()) {
                     Text(
                         text = "${kisiList[it].name.first()}${kisiList[it].surname.first()}",
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
@@ -48,7 +50,7 @@ fun LazyRowComponent(kisiList: List<ContactEntity>) {
                     Image(
                         painter = painterResource(R.drawable.ic_launcher_background),
                         contentDescription = null,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primary)
                     )
                 }
                 }

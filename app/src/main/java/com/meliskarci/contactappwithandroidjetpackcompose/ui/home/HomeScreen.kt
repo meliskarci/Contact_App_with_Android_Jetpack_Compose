@@ -3,6 +3,7 @@ package com.ihsanarslan.contactapp.ui.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -55,12 +57,13 @@ fun HomeScreen(navController: NavController) {
 
     var searchText = remember { mutableStateOf("") }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.surface)) {
         LazyColumn(modifier = Modifier.fillMaxSize().padding(top = 30.dp)) {
             item {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = "Contacts",
+                    color = MaterialTheme.colorScheme.primary,
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
@@ -68,13 +71,14 @@ fun HomeScreen(navController: NavController) {
 //                Spacer(modifier = Modifier.height(16.dp))
                 CustomSearchBar(searchText = searchText)
                 Spacer(modifier = Modifier.height(16.dp))
-                Text(modifier = Modifier.padding(start = 15.dp),text = "Recent Added", fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
+                Text(modifier = Modifier.padding(start = 15.dp),text = "Recent Added", color = MaterialTheme.colorScheme.primary, fontSize = 20.sp, fontWeight = FontWeight.SemiBold)
                 Spacer(modifier = Modifier.height(8.dp))
                 LazyRowComponent(kisiList = recentAdded.value)
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
                     modifier = Modifier.padding(start = 15.dp),
                     text = "My Contacts (${allContacts.value?.size})",
+                    color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -84,8 +88,9 @@ fun HomeScreen(navController: NavController) {
             items(allContacts.value.size) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp).background(color = MaterialTheme.colorScheme.surfaceContainer)
                         .clickable{ navController.navigate(Screen.Detail(id = allContacts.value[it].id))
                         }
                 ) {
@@ -93,13 +98,14 @@ fun HomeScreen(navController: NavController) {
                         modifier = Modifier
                             .size(50.dp)
                             .clip(CircleShape)
-                            .background(Color.LightGray),
+                            .background(MaterialTheme.colorScheme.primaryContainer),
                         contentAlignment = Alignment.Center
                     ) {
                         if (allContacts.value[it].image.isEmpty()) {
                             Text(
                                 text = "${allContacts.value[it].name.first()}${allContacts.value[it].surname.first()}",
                                 fontSize = 18.sp,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center
                             )
@@ -116,6 +122,7 @@ fun HomeScreen(navController: NavController) {
                         Text(
                             text = "${allContacts.value[it].name} ${allContacts.value[it].surname}",
                             fontSize = 16.sp,
+                            color = MaterialTheme.colorScheme.primary,
                             fontWeight = FontWeight.Medium
                         )
                         Text(
@@ -133,8 +140,8 @@ fun HomeScreen(navController: NavController) {
                 .align(Alignment.BottomEnd)
                 .padding(16.dp),
             onClick = { navController.navigate(Screen.Add) },
-            containerColor = Color(0xFFFF5722),
-            contentColor = Color.White,
+            containerColor = MaterialTheme.colorScheme.tertiary,
+            contentColor = MaterialTheme.colorScheme.onTertiary,
             shape = RoundedCornerShape(25.dp)
         ) {
             Icon(imageVector = Icons.Default.Add, contentDescription = "Add Contact")
